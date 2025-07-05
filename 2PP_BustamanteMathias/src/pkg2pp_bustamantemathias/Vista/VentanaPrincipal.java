@@ -13,7 +13,7 @@ public class VentanaPrincipal {
 
         mostrarVista(new VistaLogin(this).getVista());
 
-        Scene scene = new Scene(rootLayout, 400, 400);
+        Scene scene = new Scene(rootLayout, 400, 500);
         stage.setTitle("2PP - Bustamante  Mathias");
         stage.setScene(scene);
         stage.show();

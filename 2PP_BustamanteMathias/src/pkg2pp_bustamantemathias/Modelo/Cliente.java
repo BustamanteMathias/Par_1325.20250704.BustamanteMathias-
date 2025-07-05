@@ -2,7 +2,7 @@ package pkg2pp_bustamantemathias.Modelo;
 
 import java.io.Serializable;
 
-public class Usuario implements Serializable {
+public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String nombre;
@@ -10,7 +10,7 @@ public class Usuario implements Serializable {
     private String password;
 
     // Constructor
-    public Usuario(String nombre, String email, String password) {
+    public Cliente(String nombre, String email, String password) {
         this.nombre = nombre;
         this.email = email;
         this.password = password;

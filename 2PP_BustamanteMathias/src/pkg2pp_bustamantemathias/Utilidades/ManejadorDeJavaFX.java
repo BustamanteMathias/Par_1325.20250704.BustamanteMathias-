@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import pkg2pp_bustamantemathias.Modelo.Butaca;
 
 /**
  *
@@ -22,6 +23,31 @@ public class ManejadorDeJavaFX {
             for (int col = 0; col < matrizString[fila].length; col++) {
                 String dato = matrizString[fila][col];
                 Label celda = new Label(dato);
+                celda.setStyle("-fx-border-color: black; -fx-padding: 5;");
+                grid.add(celda, col, fila);
+            }
+        }
+
+        return grid;
+    }
+    
+    public static GridPane crearGridDesdeMatrizButaca(Butaca[][] matrizButacas) {
+        GridPane grid = new GridPane();
+        String estado;
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(10));
+        grid.setAlignment(Pos.CENTER);
+
+        for (int fila = 0; fila < matrizButacas.length; fila++) {
+            for (int col = 0; col < matrizButacas[fila].length; col++) {
+                Butaca dato = matrizButacas[fila][col];
+                if(dato.getOcupado()){
+                    estado = "X";
+                }else{
+                    estado = "O";
+                }
+                Label celda = new Label(estado);
                 celda.setStyle("-fx-border-color: black; -fx-padding: 5;");
                 grid.add(celda, col, fila);
             }

@@ -8,8 +8,7 @@ import pkg2pp_bustamantemathias.Controlador.Constantes;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
-import pkg2pp_bustamantemathias.Modelo.Usuario;
+import pkg2pp_bustamantemathias.Modelo.Cliente;
 import pkg2pp_bustamantemathias.Utilidades.*;
 
 public class VistaRegistro {
@@ -99,15 +98,15 @@ public class VistaRegistro {
     }
 
     private boolean registrarUsuario(String usuario, String password, String email) {
-        File archivo = new File(Constantes.RUTA_ARCHIVO_USUARIOS);
-        ArrayList<Usuario> listaDeUsuarios;
+        File archivo = new File(Constantes.RUTA_ARCHIVO_CLIENTES);
+        ArrayList<Cliente> listaDeUsuarios;
         
         if(ConfirmDialog.mostrar("Registro de Usuario", "Confirmar?")){
             if (archivo.exists()) {
-                listaDeUsuarios = (ArrayList<Usuario>)Serializador.leer(Constantes.RUTA_ARCHIVO_USUARIOS);
-                System.out.println("[TEST]: Archivo " +  Constantes.RUTA_ARCHIVO_USUARIOS+  " existe.");
+                listaDeUsuarios = (ArrayList<Cliente>)Serializador.leer(Constantes.RUTA_ARCHIVO_CLIENTES);
+                System.out.println("[TEST]: Archivo " +  Constantes.RUTA_ARCHIVO_CLIENTES+  " existe.");
                 
-                for (Usuario u : listaDeUsuarios) {
+                for (Cliente u : listaDeUsuarios) {
                     if(u.getEmail().equalsIgnoreCase(email)){
                         DialogOK.mostrar("Registro de Usuario", "El usuario ya existe.");
                         return false;
@@ -115,10 +114,10 @@ public class VistaRegistro {
                 }
             } else {
                 listaDeUsuarios = new ArrayList();
-                System.out.println("[TEST]: Archivo " +  Constantes.RUTA_ARCHIVO_USUARIOS  +" no existe.  [se procede a crearlo].");
+                System.out.println("[TEST]: Archivo " +  Constantes.RUTA_ARCHIVO_CLIENTES  +" no existe.  [se procede a crearlo].");
             }
-            listaDeUsuarios.add(new Usuario(usuario, email, password));
-            Serializador.guardar(Constantes.RUTA_ARCHIVO_USUARIOS, listaDeUsuarios);
+            listaDeUsuarios.add(new Cliente(usuario, email, password));
+            Serializador.guardar(Constantes.RUTA_ARCHIVO_CLIENTES, listaDeUsuarios);
             
             DialogOK.mostrar("Registro de Usuario", "Se creo el usuario correctamente.");
         }else{

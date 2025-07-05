@@ -8,8 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import pkg2pp_bustamantemathias.Controlador.Constantes;
-import pkg2pp_bustamantemathias.Modelo.Usuario;
-import pkg2pp_bustamantemathias.Utilidades.DialogOK;
+import pkg2pp_bustamantemathias.Modelo.Cliente;
+import pkg2pp_bustamantemathias.Modelo.Sesion;
 import pkg2pp_bustamantemathias.Utilidades.Serializador;
 
 public class VistaLogin {
@@ -88,12 +88,13 @@ public class VistaLogin {
     }
 
     private boolean validarPassword(String email, String password) {
-        File archivo = new File(Constantes.RUTA_ARCHIVO_USUARIOS);
+        File archivo = new File(Constantes.RUTA_ARCHIVO_CLIENTES);
          if (!archivo.exists()) return false;
          
-         ArrayList<Usuario> listaDeUsuarios = (ArrayList<Usuario>)Serializador.leer(Constantes.RUTA_ARCHIVO_USUARIOS);
-          for (Usuario u : listaDeUsuarios) {
+         ArrayList<Cliente> listaDeUsuarios = (ArrayList<Cliente>)Serializador.leer(Constantes.RUTA_ARCHIVO_CLIENTES);
+          for (Cliente u : listaDeUsuarios) {
               if(u.getEmail().equalsIgnoreCase(email) && u.getPassword().equals(password)){
+                  Sesion.getInstancia().setCliente(u);
                   return true;
               }
           }
